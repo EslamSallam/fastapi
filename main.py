@@ -29,7 +29,7 @@ inventory = {
 
 # Path Params Example
 @app.get("/get-item/{item_id}/{name}")
-def get_item(item_id: int = Path(None, description="The Id of the item you would like to view", gt=0, lt=2),
+def get_item(item_id: int = Path(None, description="The Id of the item", gt=0, lt=2),
              name: str = None):
     return inventory[item_id]
 
