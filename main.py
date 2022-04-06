@@ -1,16 +1,12 @@
 from fastapi import FastAPI, Path, HTTPException, status
 from typing import Optional
-
+from PIL import Image
+import requests
 import APIVault
 from Item import Item
 
 app = FastAPI()
 
-
-# simple Get root Function
-@app.get("/")
-def home():
-    return {"Data": "Test"}
 
 
 # simple Get About function
@@ -57,5 +53,6 @@ def create_item(item_id: int, item: Item):
 @app.post("/OCR_EG_NationalID_Front")
 def OCR_EG_NationalID_Front(SecurityKey: str, ImageUrl: str):
     if SecurityKey == APIVault.GetSecurityKey():
-        return "Success"
+        im = Image.open(requests.get(ImageUrl, stream=True).raw)
+        return im
     return "Failed"
