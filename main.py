@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Path, HTTPException, status
 from typing import Optional
 
+import APIVault
 from Item import Item
 
 app = FastAPI()
@@ -55,4 +56,6 @@ def create_item(item_id: int, item: Item):
 
 @app.post("/OCR_EG_NationalID_Front")
 def OCR_EG_NationalID_Front(SecurityKey: str, ImageUrl: str):
-    return SecurityKey + ImageUrl
+    if SecurityKey == APIVault.GetSecurityKey():
+        return "Success"
+    return "Failed"
