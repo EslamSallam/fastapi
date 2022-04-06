@@ -7,7 +7,9 @@ from Item import Item
 
 app = FastAPI()
 
-
+@app.get("/")
+def home():
+    return {"Data": "Test"}
 
 # simple Get About function
 @app.get("/about")
