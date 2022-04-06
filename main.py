@@ -54,5 +54,5 @@ def create_item(item_id: int, item: Item):
 def OCR_EG_NationalID_Front(SecurityKey: str, ImageUrl: str):
     if SecurityKey == APIVault.GetSecurityKey():
         im = Image.open(requests.get(ImageUrl, stream=True).raw)
-        return im
+        return "Succeeded"
     return "Failed"
